@@ -29,12 +29,14 @@ jobs:
 
     - name: Run tests against Live Site
       run: |
-        pytest --base-url https://www.sivaamir.com --html=report.html --capture=tee-sys
+        pytest --base-url https://www.sivaamir.com --html=report.html --capture=tee-sys --video on
 
     - name: Upload Test Report
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: live-site-report
-        path: report.html
+        path: |
+          report.html
+          test-results/
         retention-days: 30
